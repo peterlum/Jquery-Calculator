@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> JQuery Calculator</title>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+	input{
+		border-radius:2px;
+		height:14px;
+	}
+
+	label{
+		font-family: helvetica, sans-serif;
+		text-align: right;
+		color:white;
+	}
+
+	button{
+		background-color: orange;
+		border-color: yellow;
+		display:block;
+		padding:10px;
+		margin:10px;
+		width:200px;
+		border-radius:5px;
+		color:red;
+		font-size: 10pt;
+		font-family: helvetica, sans-serif;
+	}
+
+	#calculator{
+		border-radius:10px;
+		background-color:gray;
+		width:270px;
+		padding:10px;
+	}
+
+	.inputs{
+		display:block;
+		padding:10px;
+		margin:0 auto;
+		width:200px;
+	}
+
+	.buttons{
+		display:block;
+		padding:5px;
+		margin:0 auto;
+		width:230px;
+	}
+
+	.output{
+		display:block;
+		width:230px;
+		padding:5px;
+	}
+</style>
+</head>
+<body>
+
+<center><h1>Mathematical Functions</h1><center>
+<!-- <form> -->
+	<div id="calculator">
+		<div class="inputs">
+			<label>Input 1</label>
+			<input type="text" id="textarea_value" placeholder="start typing here"></input>
+			<br></br>
+			<label>Input 2</label>
+			<input type="text" id="textarea_value2" placeholder="start typing here"></input>
+		</div>
+		<div class="buttons">
+			<button>squareNumber</button>
+			<button>halfNumber</button>
+			<button>percentOf</button>
+			<button>areaOfCircle</button>
+		</div>
+		<div class="output">
+			<label>Output</label>
+			<input type="text" placeholder="Answer Here!" id="answer"></input>
+		</div>
+	</div>
+<!-- </form> -->
+
+<script>
+	function squareNumber(number){
+	    var result = number*number;
+	    return result;
+	}
+
+	function halfNumber(number){
+	    var result = number/2 ;
+	    return result;
+	}
+
+	function percentOf(number1, number2){
+	    var percentage = number1/number2 * 100 + "%" ; 
+	    return percentage;
+	}
+
+	function areaOfCircle(radius){
+	    var circleArea = Math.PI*radius*radius;
+	    var roundedArea = Math.round(circleArea*100)/100;
+	    return roundedArea;
+	}
+
+	function mathematical(number){
+	    var halved = halfNumber(number);
+	    var halvedSquared = squareNumber(halved);
+	    var areaOfHalvedSquared = areaOfCircle(halvedSquared);
+	    var squaredCircle = squareNumber(areaOfHalvedSquared);
+	    var percentOfCircle = percentOf(halvedSquared,areaOfHalvedSquared);
+	    return percentOfCircle;
+	}
+
+	$(document).ready(function(){
+
+		$('button').eq(0).click(function(){
+			var input1 = $("#textarea_value").val();
+			var output = squareNumber(input1);
+			$("#answer").val(output);
+		});
+
+		$('button').eq(1).click(function(){
+			var input1 = $("#textarea_value").val();
+			var output = halfNumber(input1);
+			$("#answer").val(output);
+		});
+
+		$('button').eq(2).click(function(){
+			var input1 = $("#textarea_value").val();
+			var input2 = $("#textarea_value2").val();
+			var answer = percentOf(input1,input2)
+			$("#answer").val(answer);
+		});
+
+		$('button').eq(3).click(function(){
+			var input1 = $("#textarea_value").val();
+			var output = areaOfCircle(input1);
+			$("#answer").val(output);
+		});
+
+	});
+/*
+	$('button').eq(0).on('click', function(){
+		console.log("squareNumber")
+	})
+
+	$('button').eq(1).on('click', function(){
+		console.log("halfNumber");
+	})
+
+	$('button').eq(2).on('click', function(){
+		console.log("percentOf");
+	})
+
+	$('button').eq(3).on('click', function(){
+		console.log("areaOfCircle");
+	})
+*/
+</script>
+</body>
+</html>
